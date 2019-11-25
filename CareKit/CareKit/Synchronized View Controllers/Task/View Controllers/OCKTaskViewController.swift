@@ -113,7 +113,7 @@ UIViewController, OCKTaskViewDelegate {
     // Update view state on a success
     // Note: This is needed because the UI assumes user interactions (lke button taps) will be successful, and displays the corresponding
     // state immedately. When the interaction is actually unsuccessful, we need to reset the UI.
-    func updateViewState() {
+    public func updateViewState() {
         controller.objectWillChange.value = controller.objectWillChange.value // triggers an update to the view
     }
 
