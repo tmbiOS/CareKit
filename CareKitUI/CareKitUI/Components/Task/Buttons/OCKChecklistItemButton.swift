@@ -80,6 +80,7 @@ open class OCKChecklistItemButton: OCKAnimatedButton<OCKStackView> {
         addSubviews()
         constrainSubviews()
         setupAccessibility()
+        handlesSelection = false
     }
 
     private func addSubviews() {

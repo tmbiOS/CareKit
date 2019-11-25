@@ -110,8 +110,8 @@ open class OCKSimpleTaskView: OCKView, OCKTaskDisplayable {
 
     @objc
     private func didCompleteEvent(_ sender: UIControl) {
-        completionButton.setSelected(!completionButton.isSelected, animated: true)
-        delegate?.taskView(self, didCompleteEvent: completionButton.isSelected, at: .init(row: 0, section: 0), sender: sender)
+        //completionButton.setSelected(!completionButton.isSelected, animated: true)
+        delegate?.taskView(self, didCompleteEvent: !completionButton.isSelected, at: .init(row: 0, section: 0), sender: sender)
     }
 
     override open func styleDidChange() {

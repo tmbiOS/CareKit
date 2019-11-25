@@ -32,7 +32,7 @@ import Foundation
 import UIKit
 import CareKit
 
-class CareViewController: OCKDailyPageViewController {
+class CareViewController: OCKDailyTasksPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +72,12 @@ class CareViewController: OCKDailyPageViewController {
             switch result {
             case .failure(let error): print("Error: \(error)")
             case .success(let tasks):
+
+                if tasks.isEmpty {
+                    let emptyView = self.createEmptyView(for: listViewController)
+                    listViewController.appendView(emptyView, animated: false)
+                    return
+                }
 
                 // Add a non-CareKit view into the list
                 let tipTitle = "Benefits of exercising"

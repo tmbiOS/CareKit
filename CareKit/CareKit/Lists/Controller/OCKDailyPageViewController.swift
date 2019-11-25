@@ -167,6 +167,12 @@ UIPageViewControllerDataSource, UIPageViewControllerDelegate {
         listView.scrollView.scrollIndicatorInsets = insets
     }
 
+    public func refreshCurrentController() {
+        let listViewController = makePage(date: selectedDate)
+        pageViewController.setViewControllers(
+            [listViewController], direction: .forward, animated: false, completion: nil)
+    }
+
     // MARK: - OCKCalendarPageViewControllerDelegate
 
     public func weekCalendarPageViewController(_ viewController: OCKWeekCalendarPageViewController, didSelectDate date: Date, previousDate: Date) {
