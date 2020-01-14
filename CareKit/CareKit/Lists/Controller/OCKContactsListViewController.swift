@@ -99,6 +99,14 @@ open class OCKContactsListViewController: OCKListViewController {
                 self.delegate?.contactsListViewController(self, didEncounterError: error)
             case .success(let contacts):
                 self.clear()
+
+                guard let ockContacts = contacts as? [OCKContact] else {
+                    return
+                }
+
+                let contacts = ockContacts.filter { $0.nextVersionID == nil
+                }
+
                 for contact in contacts {
                     let contactViewController = OCKDetailedContactViewController(contact: contact, storeManager: self.storeManager)
                     contactViewController.delegate = self.contactDelegate
