@@ -40,6 +40,10 @@ public extension OCKTaskControllerProtocol {
         let detailViewController = OCKDetailViewController()
         detailViewController.detailView.titleLabel.text = task.title
         detailViewController.detailView.instructionsLabel.text = task.instructions
+        if let concreteTask = task as? OCKTask,
+            let image = concreteTask.detailAssetImage {
+            detailViewController.detailView.imageView.image = image
+        }
         return detailViewController
     }
 

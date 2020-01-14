@@ -30,7 +30,13 @@
 
 import UIKit
 
-open class OCKLogItemButton: OCKAnimatedButton<OCKStackView> {
+public protocol OCKLogItemButtonViewable: UIView {
+  var imageView: UIImageView { get }
+  var titleLabel: OCKLabel { get }
+  var detailLabel: OCKLabel { get }
+}
+
+open class OCKLogItemButton: OCKAnimatedButton<OCKStackView>, OCKLogItemButtonViewable {
 
     private enum Constants {
         static let spacing: CGFloat = 3

@@ -28,7 +28,7 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import Foundation
+import UIKit
 
 /// An `OCKTask` represents some task or action that a patient is supposed to perform. Tasks are optionally associable with an `OCKCarePlan`
 /// and must have a unique id and schedule. The schedule determines when and how often the task should be performed, and the
@@ -85,4 +85,20 @@ public struct OCKTask: Codable, Equatable, Identifiable, OCKAnyVersionableTask, 
         guard let plan = plan as? OCKCarePlan, let planID = plan.localDatabaseID else { return false }
         return carePlanID == planID
     }
+}
+
+public extension OCKTask {
+  var detailAssetImage: UIImage? {
+    guard let imageName =  userInfo?["detailAssetImage"],
+      let image = UIImage(named: imageName) else {
+        return nil
+    }
+    return image
+  }
+
+  mutating func setDetailAssetImageName(_ name: String) {
+    var userInfo = self.userInfo ?? [:]
+    userInfo["detailAssetImage"] = name
+    self.userInfo = userInfo
+  }
 }

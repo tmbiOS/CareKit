@@ -117,7 +117,7 @@ UIViewController, OCKTaskViewDelegate {
         controller.objectWillChange.value = controller.objectWillChange.value // triggers an update to the view
     }
 
-    func notifyDelegateAndResetViewOnError<Success, Error>(result: Result<Success, Error>) {
+    open func notifyDelegateAndResetViewOnError<Success, Error>(result: Result<Success, Error>) {
         if case let .failure(error) = result {
             delegate?.taskViewController(self, didEncounterError: error)
         } else {

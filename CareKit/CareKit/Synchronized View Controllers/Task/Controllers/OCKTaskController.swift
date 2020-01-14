@@ -136,4 +136,6 @@ open class OCKTaskController: OCKTaskControllerProtocol, ObservableObject {
             }
         }
     }
+
+    open func selectOutcomeValue(completion: ((Result<String, Error>) -> Void)?) { }
 }

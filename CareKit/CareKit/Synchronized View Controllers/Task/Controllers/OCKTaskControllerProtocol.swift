@@ -80,4 +80,6 @@ public protocol OCKTaskControllerProtocol: AnyObject {
     /// Return an event for a particular index path. Customize this method to define the indec path behavior used by other functions in this protocol.
     /// - Parameter indexPath: The index path used to locate a particular event.
     func eventFor(indexPath: IndexPath) -> OCKAnyEvent?
+
+    func selectOutcomeValue(completion: ((Result<String, Error>) -> Void)?)
 }

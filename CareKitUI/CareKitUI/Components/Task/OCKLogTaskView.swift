@@ -71,8 +71,8 @@ open class OCKLogTaskView: OCKView, OCKTaskDisplayable {
     }
 
     /// The list of buttons in the log.
-    open var items: [OCKLogItemButton] {
-        guard let buttons = logItemsStackView.arrangedSubviews as? [OCKLogItemButton] else { fatalError("Unsupported type.") }
+    open var items: [OCKLogItemButtonViewable] {
+        guard let buttons = logItemsStackView.arrangedSubviews as? [OCKLogItemButtonViewable] else { fatalError("Unsupported type.") }
         return buttons
     }
 
@@ -105,7 +105,8 @@ open class OCKLogTaskView: OCKView, OCKTaskDisplayable {
         headerButton.addTarget(self, action: #selector(didTapView), for: .touchUpInside)
     }
 
-    private func makeItem(withTitle title: String?, detail: String?) -> OCKLogItemButton {
+    @discardableResult
+    open func makeItem(withTitle title: String?, detail: String?) -> OCKLogItemButtonViewable {
         let button = OCKLogItemButton()
         button.addTarget(self, action: #selector(itemTapped(_:)), for: .touchUpInside)
         button.titleLabel.text = title
@@ -121,7 +122,7 @@ open class OCKLogTaskView: OCKView, OCKTaskDisplayable {
     }
 
     @objc
-    private func itemTapped(_ sender: UIControl) {
+    open func itemTapped(_ sender: UIControl) {
         guard let index = logItemsStackView.arrangedSubviews.firstIndex(of: sender) else {
             fatalError("Target was not set up properly.")
         }
@@ -145,7 +146,7 @@ open class OCKLogTaskView: OCKView, OCKTaskDisplayable {
     ///   - detail: The detail text to display in the item. The text is tinted by default.
     /// - Returns: The item that was updated.
     @discardableResult
-    open func updateItem(at index: Int, withTitle title: String?, detail: String?) -> OCKLogItemButton? {
+    open func updateItem(at index: Int, withTitle title: String?, detail: String?) -> OCKLogItemButtonViewable? {
         guard index < logItemsStackView.arrangedSubviews.count else { return nil }
         let button = items[index]
         button.accessibilityLabel = title
@@ -163,7 +164,7 @@ open class OCKLogTaskView: OCKView, OCKTaskDisplayable {
     ///   - animated: Animate the insertion of the logged item.
     /// - Returns: The item that was inserted.
     @discardableResult
-    open func insertItem(withTitle title: String?, detail: String?, at index: Int, animated: Bool) -> OCKLogItemButton {
+    open func insertItem(withTitle title: String?, detail: String?, at index: Int, animated: Bool) -> OCKLogItemButtonViewable {
         let button = makeItem(withTitle: title, detail: detail)
         logItemsStackView.insertArrangedSubview(button, at: index, animated: animated)
         return button
@@ -177,7 +178,7 @@ open class OCKLogTaskView: OCKView, OCKTaskDisplayable {
     ///   - animated: Animate appending the item.
     /// - Returns: The item that was appended.
     @discardableResult
-    open func appendItem(withTitle title: String?, detail: String?, animated: Bool) -> OCKLogItemButton {
+    open func appendItem(withTitle title: String?, detail: String?, animated: Bool) -> OCKLogItemButtonViewable {
         let button = makeItem(withTitle: title, detail: detail)
         logItemsStackView.addArrangedSubview(button, animated: animated)
         return button
@@ -190,7 +191,7 @@ open class OCKLogTaskView: OCKView, OCKTaskDisplayable {
     ///   - animated: Animate the removal of the item.
     /// - Returns: The item that was removed.
     @discardableResult
-    open func removeItem(at index: Int, animated: Bool) -> OCKLogItemButton? {
+    open func removeItem(at index: Int, animated: Bool) -> OCKLogItemButtonViewable? {
         guard index < logItemsStackView.arrangedSubviews.count else { return nil }
         let button = items[index]
         logItemsStackView.removeArrangedSubview(button, animated: animated)
