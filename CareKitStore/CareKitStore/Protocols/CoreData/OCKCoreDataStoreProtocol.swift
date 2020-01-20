@@ -63,7 +63,7 @@ extension OCKCoreDataStoreProtocol {
         descriptor.url = NSPersistentContainer.defaultDirectoryURL().appendingPathComponent(name + ".sqlite")
         descriptor.type = storeType.stringValue
         descriptor.shouldAddStoreAsynchronously = false
-        descriptor.setOption(FileProtectionType.complete as NSObject, forKey: NSPersistentStoreFileProtectionKey)
+        descriptor.setOption(FileProtectionType.none as NSObject, forKey: NSPersistentStoreFileProtectionKey)
         container.persistentStoreDescriptions = [descriptor]
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? { fatalError("Unresolved error \(error), \(error.userInfo)") }
