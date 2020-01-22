@@ -81,5 +81,5 @@ public protocol OCKTaskControllerProtocol: AnyObject {
     /// - Parameter indexPath: The index path used to locate a particular event.
     func eventFor(indexPath: IndexPath) -> OCKAnyEvent?
 
-    func selectOutcomeValue(completion: ((Result<String, Error>) -> Void)?)
+    func selectOutcomeValue(completion: ((Result<[OCKOutcomeValueUnderlyingType], Error>) -> Void)?)
 }
