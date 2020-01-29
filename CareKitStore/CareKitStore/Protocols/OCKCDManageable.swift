@@ -65,7 +65,12 @@ extension OCKCDManageable where Self: NSManagedObject {
                                configureFetchRequest: ((NSFetchRequest<Self>) -> Void)? = nil) -> [Self] {
         let request = sortedFetchRequest(withPredicate: predicate)
         configureFetchRequest?(request)
-        guard let results = try? context.fetch(request) else { fatalError("This should never fail") }
+        var results = [Self]()
+        do {
+            results = try context.fetch(request)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
         return results
     }
 }
