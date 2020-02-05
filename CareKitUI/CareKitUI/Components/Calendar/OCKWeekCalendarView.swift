@@ -76,7 +76,7 @@ open class OCKWeekCalendarView: OCKView, OCKCalendarDisplayable {
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd"
+        formatter.dateFormat = "E, d"
         return formatter
     }()
 
@@ -170,6 +170,7 @@ open class OCKWeekCalendarView: OCKView, OCKCalendarDisplayable {
         super.styleDidChange()
         let cachedStyle = style()
         directionalLayoutMargins = cachedStyle.dimension.directionalInsets1
-        stackView.spacing = cachedStyle.dimension.directionalInsets1.leading
+//        stackView.spacing = cachedStyle.dimension.directionalInsets1.leading
+			stackView.spacing = 6
     }
 }
