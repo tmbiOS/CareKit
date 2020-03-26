@@ -173,7 +173,7 @@ UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     public func refreshCurrentController() {
         let listViewController = makePage(date: selectedDate)
         pageViewController.setViewControllers(
-            [listViewController], direction: .forward, animated: true, completion: nil)
+            [listViewController], direction: .forward, animated: false, completion: nil)
     }
 
     // MARK: - OCKCalendarPageViewControllerDelegate

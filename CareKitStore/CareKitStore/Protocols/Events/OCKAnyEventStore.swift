@@ -129,14 +129,19 @@ public extension OCKAnyReadOnlyEventStore where Self: OCKAnyReadOnlyTaskStore, S
 
     func fetchInsights(query: OCKInsightQuery, callbackQueue: DispatchQueue = .main,
                        completion: @escaping OCKResultClosure<[Double]>) {
-        let eventQuery = OCKEventQuery(dateInterval: query.dateInterval)
-        fetchAnyEvents(taskID: query.taskID, query: eventQuery, callbackQueue: callbackQueue) { result in
+			let eventQuery = OCKEventQuery(dateInterval: query.dateInterval)
+			fetchAnyEvents(taskID: query.taskID, query: eventQuery, callbackQueue: DispatchQueue.global()) { result in
             switch result {
-            case .failure(let error): completion(.failure(.fetchFailed(reason: "Failed to fetch insights. \(error.localizedDescription)")))
+            case .failure(let error):
+							callbackQueue.async {
+								completion(.failure(.fetchFailed(reason: "Failed to fetch insights. \(error.localizedDescription)")))
+							}
             case .success(let events):
                 let eventsByDay = self.groupEventsByDate(events: events, after: query.dateInterval.start, before: query.dateInterval.end)
                 let valuesByDay = eventsByDay.map(query.aggregator.aggregate)
-                completion(.success(valuesByDay))
+								callbackQueue.async {
+									completion(.success(valuesByDay))
+								}
             }
         }
     }

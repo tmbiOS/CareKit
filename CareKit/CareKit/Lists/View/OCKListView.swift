@@ -31,7 +31,7 @@
 import UIKit
 
 /// A view enclosing a scrollable stack view.
-internal class OCKListView: OCKView {
+open class OCKListView: OCKView {
 
     // MARK: Properties
 
@@ -43,7 +43,7 @@ internal class OCKListView: OCKView {
     }()
 
     /// The scroll view that contains the stack view.
-    let scrollView = UIScrollView()
+    public let scrollView = UIScrollView()
 
     private let contentView = UIView()
 
@@ -54,7 +54,7 @@ internal class OCKListView: OCKView {
         setup()
     }
 
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
@@ -92,7 +92,7 @@ internal class OCKListView: OCKView {
             contentView.constraints(equalTo: scrollView))
     }
 
-    override func styleDidChange() {
+    override open func styleDidChange() {
         super.styleDidChange()
         let cachedStyle = style()
         contentView.directionalLayoutMargins = cachedStyle.dimension.directionalInsets1
