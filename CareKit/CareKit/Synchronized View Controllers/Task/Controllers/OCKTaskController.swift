@@ -108,7 +108,7 @@ open class OCKTaskController: OCKTaskControllerProtocol, ObservableObject {
         assert(taskIds.dropFirst().allSatisfy { $0 == taskIds.first }, "Events should belong to the same task.")
 
         // Add each event to the view model and set the view model value
-        var viewModel = OCKTaskEvents()
+        var viewModel = objectWillChange.value ?? OCKTaskEvents()
         events.map { self.modified(event: $0) }
             .sorted(by: { $0.scheduleEvent.start < $1.scheduleEvent.start })
             .forEach { viewModel.addEvent($0) }
