@@ -83,7 +83,10 @@ extension OCKCoreDataStoreProtocol {
         descriptor.setOption(FileProtectionType.complete as NSObject, forKey: NSPersistentStoreFileProtectionKey)
         container.persistentStoreDescriptions = [descriptor]
         container.loadPersistentStores(completionHandler: { _, error in
-            if let error = error as NSError? { fatalError("Unresolved error \(error), \(error.userInfo)") }
+            if let error = error as NSError? {
+							return
+//							fatalError("Unresolved error \(error), \(error.userInfo)")
+					}
             if self.storeType == .onDisk {
                 do {
                     guard var storeUrl = descriptor.url else { throw OCKStoreError.invalidValue(reason: "Bad URL") }
