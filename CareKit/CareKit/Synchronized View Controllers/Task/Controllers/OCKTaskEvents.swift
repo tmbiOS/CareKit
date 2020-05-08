@@ -57,6 +57,15 @@ public struct OCKTaskEvents {
         return events(forSection: 0)
     }
 
+    /// Returns all events for tasks.
+    public var allEvents: [OCKAnyEvent] {
+        return events.values.compactMap {
+            $0
+        }.flatMap {
+            $0
+        }
+    }
+
     /// Adds an event.
     public mutating func addEvent(_ event: OCKAnyEvent) {
         let id = event.task.id
