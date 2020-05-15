@@ -37,6 +37,8 @@ import Foundation
 /// the `OCKContactsListViewControllerDelegate`.
 public protocol OCKContactsListViewControllerDelegate: AnyObject {
     func contactsListViewController(_ viewController: OCKContactsListViewController, didEncounterError: Error)
+	
+	func contactsListViewController(_ viewController: OCKContactsListViewController, didLoadContacts: [OCKAnyContact])
 }
 
 /// An `OCKListViewController` that automatically queries and displays contacts in the `Store` using
@@ -99,7 +101,7 @@ open class OCKContactsListViewController: OCKListViewController {
                 self.delegate?.contactsListViewController(self, didEncounterError: error)
             case .success(let contacts):
                 self.clear()
-
+				
                 guard let ockContacts = contacts as? [OCKContact] else {
                     return
                 }
@@ -112,6 +114,8 @@ open class OCKContactsListViewController: OCKListViewController {
                     contactViewController.delegate = self.contactDelegate
                     self.appendViewController(contactViewController, animated: false)
                 }
+				
+				self.delegate?.contactsListViewController(self, didLoadContacts: contacts)
             }
         }
     }
