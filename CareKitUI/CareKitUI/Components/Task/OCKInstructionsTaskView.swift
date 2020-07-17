@@ -117,6 +117,7 @@ open class OCKInstructionsTaskView: OCKView, OCKTaskDisplayable {
 
     private func addSubviews() {
         addSubview(contentView)
+        completionButton.isHidden = true
         contentView.addSubview(headerStackView)
         [headerButton, contentStackView].forEach { headerStackView.addArrangedSubview($0) }
         [instructionsLabel, completionButton].forEach { contentStackView.addArrangedSubview($0) }
