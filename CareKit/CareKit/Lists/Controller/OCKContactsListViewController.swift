@@ -106,7 +106,7 @@ open class OCKContactsListViewController: OCKListViewController {
                     return
                 }
 
-                let contacts = ockContacts.filter { $0.nextVersionID == nil
+                let contacts = ockContacts.filter { $0.nextVersionUUID == nil
                 }
 
                 for contact in contacts {

@@ -37,8 +37,6 @@ open class OCKCartesianChartView: OCKView, OCKChartDisplayable {
 
     private let contentView = OCKView()
 
-    private lazy var cardBuilder = OCKCardBuilder(cardView: self, contentView: contentView)
-
     private let headerContainerView = UIView()
 
     /// Handles events related to an `OCKChartDisplayable` object.
@@ -95,13 +93,19 @@ open class OCKCartesianChartView: OCKView, OCKChartDisplayable {
     }
 
     private func constrainSubviews() {
+
         [contentView, contentStackView, headerView].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
+
+        let height = heightAnchor.constraint(equalToConstant: 225)
+        height.priority = .defaultLow
+
         NSLayoutConstraint.activate(
-            contentStackView.constraints(equalTo: self, directions: [.horizontal]) +
-            contentStackView.constraints(equalTo: layoutMarginsGuide, directions: [.vertical]) +
+            contentStackView.constraints(equalTo: contentView, directions: [.horizontal]) +
+            contentStackView.constraints(equalTo: contentView.layoutMarginsGuide, directions: [.vertical]) +
             headerView.constraints(equalTo: headerContainerView.layoutMarginsGuide, directions: [.horizontal]) +
             headerView.constraints(equalTo: headerContainerView, directions: [.vertical]) +
-            contentStackView.constraints(equalTo: contentView))
+            contentView.constraints(equalTo: self) +
+            [height])
     }
 
     @objc
@@ -112,6 +116,7 @@ open class OCKCartesianChartView: OCKView, OCKChartDisplayable {
     override open func styleDidChange() {
         super.styleDidChange()
         let cachedStyle = style()
+        let cardBuilder = OCKCardBuilder(cardView: self, contentView: contentView)
         cardBuilder.enableCardStyling(true, style: cachedStyle)
         contentStackView.spacing = cachedStyle.dimension.directionalInsets1.top
         directionalLayoutMargins = cachedStyle.dimension.directionalInsets1

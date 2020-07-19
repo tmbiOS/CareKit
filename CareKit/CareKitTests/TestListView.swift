@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2019, Apple Inc. All rights reserved.
+ Copyright (c) 2020, Apple Inc. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
@@ -28,9 +28,17 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@testable import CareKitStore
+@testable import CareKit
+import Foundation
 import XCTest
 
-class TestVersionable: XCTestCase {
+class TestListView: XCTestCase {
 
+    func testBackgroundColorPropagates() {
+        let view = OCKListView()
+        view.backgroundColor = .red
+        XCTAssertEqual(view.backgroundColor, .red)
+        XCTAssertEqual(view.backgroundColor, view.scrollView.backgroundColor)
+        XCTAssertEqual(view.contentView.backgroundColor, view.scrollView.backgroundColor)
+    }
 }

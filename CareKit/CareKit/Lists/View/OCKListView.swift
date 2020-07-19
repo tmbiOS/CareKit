@@ -33,6 +33,13 @@ import UIKit
 /// A view enclosing a scrollable stack view.
 open class OCKListView: OCKView {
 
+    open override var backgroundColor: UIColor? {
+        didSet {
+            contentView.backgroundColor = backgroundColor
+            scrollView.backgroundColor = backgroundColor
+        }
+    }
+
     // MARK: Properties
 
     /// The stack view embedded inside the scroll view.
@@ -45,7 +52,7 @@ open class OCKListView: OCKView {
     /// The scroll view that contains the stack view.
     public let scrollView = UIScrollView()
 
-    private let contentView = UIView()
+    let contentView = UIView()
 
     // MARK: - Life Cycle
 
@@ -68,7 +75,6 @@ open class OCKListView: OCKView {
     }
 
     private func styleSubviews() {
-        scrollView.backgroundColor = contentView.backgroundColor
         scrollView.alwaysBounceVertical = true
     }
 
@@ -97,7 +103,6 @@ open class OCKListView: OCKView {
         let cachedStyle = style()
         contentView.directionalLayoutMargins = cachedStyle.dimension.directionalInsets1
         backgroundColor = cachedStyle.color.customGroupedBackground
-        contentView.backgroundColor = cachedStyle.color.customGroupedBackground
         stackView.spacing = cachedStyle.dimension.directionalInsets1.top
     }
 }
