@@ -154,8 +154,10 @@ public extension OCKAnyReadOnlyEventStore where Self: OCKAnyReadOnlyTaskStore, S
             days.append([])
         }
         for event in events {
-            let dayIndex = grabDayIndex(event.scheduleEvent.start)
+          let dayIndex = grabDayIndex(event.scheduleEvent.start)
+          if dayIndex >= 0, dayIndex < days.count {
             days[dayIndex].append(event)
+          }
         }
         return days
     }
