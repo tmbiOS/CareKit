@@ -30,7 +30,7 @@
 
 import UIKit
 
-private class OCKLogButton: OCKLabeledButton {
+public class OCKLogButton: OCKLabeledButton {
     override init() {
         super.init()
         handlesSelection = false
