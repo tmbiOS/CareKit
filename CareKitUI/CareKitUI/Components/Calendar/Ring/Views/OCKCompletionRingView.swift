@@ -64,7 +64,7 @@ open class OCKCompletionRingView: OCKView {
     public var strokeColor: UIColor = OCKStyle().color.customBlue {
         didSet {
             ringView.strokeColor = strokeColor
-            checkmarkImageView.tintColor = strokeColor
+//            checkmarkImageView.tintColor = strokeColor
         }
     }
 
@@ -78,7 +78,7 @@ open class OCKCompletionRingView: OCKView {
 
     /// The checkmark image view inside of the ring view.
     let checkmarkImageView: UIImageView = {
-        let image = UIImage(systemName: "checkmark")
+        let image = UIImage(named: "weekday-checkmark")
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -129,7 +129,7 @@ open class OCKCompletionRingView: OCKView {
 
         setProgress(0, animated: false)
 
-        checkmarkImageView.tintColor = strokeColor
+        checkmarkImageView.tintColor = UIColor(named: "checkmark-color")
         ringView.strokeColor = strokeColor
 
         [grooveView, ringView, checkmarkImageView].forEach {

@@ -31,6 +31,12 @@
 import CareKitUI
 import UIKit
 
+extension UIView {
+    var navBarHeight: CGFloat {
+        return ((UIApplication.shared.keyWindow?.rootViewController as? UITabBarController)?.viewControllers?.first as? UINavigationController)?.navigationBar.frame.maxY ?? 0
+    }
+}
+
 internal class OCKHeaderBodyView: OCKView {
 
     enum Constants {
@@ -56,6 +62,15 @@ internal class OCKHeaderBodyView: OCKView {
         let view = UIView()
         return view
     }()
+    
+    private lazy var backgroundImageView: UIImageView = {
+        let backgroundImageView = UIImageView(
+            image: UIImage(named: "navbar-bg")
+        )
+        backgroundImageView.contentMode = .scaleToFill
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        return backgroundImageView
+    }()
 
     private let separatorView = OCKSeparatorView()
 
@@ -78,12 +93,45 @@ internal class OCKHeaderBodyView: OCKView {
     private func setup() {
         addSubviews()
         constrainSubviews()
+        addBackgroundImage()
     }
 
     private func addSubviews() {
         [bodyView, headerBackgroundView, separatorView, headerView].forEach { addSubview($0) }
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        addBackgroundImage()
+    }
 
+    private func addBackgroundImage() {
+        guard traitCollection.userInterfaceStyle == .light else {
+            backgroundImageView.removeFromSuperview()
+            return
+        }
+        
+        guard backgroundImageView.superview == nil else {
+            return
+        }
+        
+        insertSubview(backgroundImageView, at: 3)
+        
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImageView.heightAnchor.constraint(
+            equalToConstant: headerHeight + navBarHeight
+        ).isActive = true
+        backgroundImageView.leadingAnchor.constraint(
+            equalTo: leadingAnchor, constant: 0
+        ).isActive = true
+        backgroundImageView.trailingAnchor.constraint(
+            equalTo: trailingAnchor, constant: 0
+        ).isActive = true
+        backgroundImageView.topAnchor.constraint(
+            equalTo: topAnchor, constant: 0
+        ).isActive = true
+    }
+    
     private func constrainSubviews() {
         [headerBackgroundView, separatorView, bodyView, headerView].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         NSLayoutConstraint.activate([
@@ -102,7 +150,7 @@ internal class OCKHeaderBodyView: OCKView {
             separatorView.trailingAnchor.constraint(equalTo: headerBackgroundView.trailingAnchor)
         ] + bodyView.constraints(equalTo: self))
     }
-
+    
     override func styleDidChange() {
         super.styleDidChange()
         let style = self.style()

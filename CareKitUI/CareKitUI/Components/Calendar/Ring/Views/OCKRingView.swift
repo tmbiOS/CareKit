@@ -88,8 +88,8 @@ class OCKRingView: OCKView {
         layer.addSublayer(ringLayer)
         styleRingLayer()
     }
-
-    /// Set the progress value of the ring. The ring will fill based on the value.
+  
+  /// Set the progress value of the ring. The ring will fill based on the value.
     ///
     /// - Parameters:
     ///   - value: Progress value between 0 and 1.
@@ -109,6 +109,8 @@ class OCKRingView: OCKView {
         fill.duration = duration
         fill.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         ringLayer.add(fill, forKey: "fill")
+
+        configureFillColor(value)
     }
 
     private func styleRingLayer() {
@@ -127,5 +129,18 @@ class OCKRingView: OCKView {
         let center = CGPoint(x: bounds.origin.x + frame.width / 2.0, y: bounds.origin.y + frame.height / 2.0)
         let circlePath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         return circlePath.cgPath
+    }
+  
+    fileprivate func configureFillColor(_ value: CGFloat) {
+       if value >= 1.0 {
+         ringLayer.fillColor = style().color.tintColor.cgColor
+       } else {
+        ringLayer.fillColor = nil
+       }
+     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+      super.traitCollectionDidChange(previousTraitCollection)
+      configureFillColor(progress)
     }
 }

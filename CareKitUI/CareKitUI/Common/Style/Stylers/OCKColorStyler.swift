@@ -61,6 +61,9 @@ public protocol OCKColorStyler {
     var black: UIColor { get }
     var white: UIColor { get }
     var clear: UIColor { get }
+  
+    var tintColor: UIColor { get }
+    var weekLabelColor: UIColor { get }
 }
 
 /// Defines default values for color constants.
@@ -94,6 +97,10 @@ public extension OCKColorStyler {
     var white: UIColor { .white }
     var black: UIColor { .black }
     var clear: UIColor { .clear }
+  
+    var tintColor: UIColor { .systemBlue }
+  
+    var weekLabelColor: UIColor { .label }
 }
 
 /// Concrete object for color constants.

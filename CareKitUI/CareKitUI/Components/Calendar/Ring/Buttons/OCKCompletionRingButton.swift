@@ -117,11 +117,11 @@ open class OCKCompletionRingButton: OCKAnimatedButton<OCKStackView> {
     private func updateRingColors() {
         let cachedStyle = style()
         let grooveStrokeColor = completionState == .dimmed ? cachedStyle.color.customGray3 : cachedStyle.color.customGray
-        let deselectedLabelColor = completionState == .dimmed ? cachedStyle.color.tertiaryLabel : cachedStyle.color.label
+        let deselectedLabelColor = completionState == .dimmed ? cachedStyle.color.tertiaryLabel : cachedStyle.color.weekLabelColor
 
-        label.textColor = isSelected ? tintColor : deselectedLabelColor
+        label.textColor = isSelected ? cachedStyle.color.secondaryLabel : deselectedLabelColor
         ring.grooveView.strokeColor = grooveStrokeColor
-        ring.strokeColor = tintColor
+        ring.strokeColor = cachedStyle.color.tintColor
     }
 
     private func addSubviews() {
@@ -130,6 +130,6 @@ open class OCKCompletionRingButton: OCKAnimatedButton<OCKStackView> {
     }
 
     private func applyTintColor() {
-        ring.strokeColor = tintColor
+      ring.strokeColor = style().color.tintColor
     }
 }
