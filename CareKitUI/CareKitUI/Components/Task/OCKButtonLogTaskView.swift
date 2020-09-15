@@ -84,7 +84,8 @@ open class OCKButtonLogTaskView: OCKLogTaskView, UICollectionViewDelegate, UICol
 
     /// Multi-line label below the header.
     public let instructionsLabel: OCKLabel = {
-        let label = OCKLabel(textStyle: .subheadline, weight: .medium)
+        let label = OCKLabel()
+        label.font = UIFont.vitimFont14Regular()
         label.numberOfLines = 0
         return label
     }()

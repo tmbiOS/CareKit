@@ -75,7 +75,8 @@ open class OCKHeaderView: OCKView {
 
     /// Multi-line title label above `detailLabel`
     public let titleLabel: OCKLabel = {
-        let label = OCKLabel(textStyle: .headline, weight: .bold)
+        let label = OCKLabel()
+        label.font = UIFont.vitimFont18Bold()
         label.numberOfLines = 0
         label.animatesTextChanges = true
         return label
@@ -83,7 +84,8 @@ open class OCKHeaderView: OCKView {
 
     /// Multi-line detail label below `titleLabel`.
     public let detailLabel: OCKLabel = {
-        let label = OCKLabel(textStyle: .caption1, weight: .medium)
+        let label = OCKLabel()
+        label.font = UIFont.vitimFont12Regular()
         label.numberOfLines = 0
         label.animatesTextChanges = true
         return label
@@ -208,7 +210,7 @@ open class OCKHeaderView: OCKView {
         super.styleDidChange()
         let style = self.style()
         titleLabel.textColor = style.color.label
-        detailLabel.textColor = style.color.label
+        detailLabel.textColor = style.color.secondaryLabel
 
         detailDisclosureImage?.tintColor = style.color.customGray3
         iconImageView?.tintColor = style.color.customGray3

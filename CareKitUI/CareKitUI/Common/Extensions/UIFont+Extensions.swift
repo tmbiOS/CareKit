@@ -47,4 +47,16 @@ extension UIFont {
         ])
         return UIFont(descriptor: weightedFontDescriptor, size: 0)
     }
+
+    static func vitimFont14Regular() -> UIFont {
+        UIFont.systemFont(ofSize: 14.0, weight: .regular)
+    }
+
+    static func vitimFont18Bold() -> UIFont {
+        UIFont.systemFont(ofSize: 18.0, weight: .regular)
+    }
+
+    static func vitimFont12Regular() -> UIFont {
+      UIFont.preferredCustomFont(forTextStyle: .caption1, weight: .regular)
+    }
 }

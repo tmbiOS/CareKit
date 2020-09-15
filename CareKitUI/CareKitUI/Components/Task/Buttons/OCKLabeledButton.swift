@@ -42,7 +42,8 @@ open class OCKLabeledButton: OCKAnimatedButton<OCKLabel> {
 
     /// Label in the center of the buttton.
     public let label: OCKLabel = {
-        let label = OCKLabel(textStyle: .subheadline, weight: .medium)
+        let label = OCKLabel()
+        label.font = UIFont.vitimFont14Regular()
         label.text = loc("MARK_COMPLETE")
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
