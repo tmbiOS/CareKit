@@ -83,7 +83,8 @@ open class OCKInstructionsTaskView: OCKView, OCKTaskDisplayable {
 
     /// Multi-line label over the `completionButton`.
     public let instructionsLabel: OCKLabel = {
-        let label = OCKLabel(textStyle: .subheadline, weight: .medium)
+        let label = OCKLabel()
+        label.font = UIFont.vitimFont14Regular()
         label.numberOfLines = 0
         return label
     }()
@@ -145,7 +146,7 @@ open class OCKInstructionsTaskView: OCKView, OCKTaskDisplayable {
         let style = self.style()
         let cardBuilder = OCKCardBuilder(cardView: self, contentView: contentView)
         cardBuilder.enableCardStyling(true, style: style)
-        instructionsLabel.textColor = style.color.label
+        instructionsLabel.textColor = style.color.weekLabelColor
         contentStackView.spacing = style.dimension.directionalInsets1.top
         directionalLayoutMargins = style.dimension.directionalInsets1
         contentStackView.directionalLayoutMargins = style.dimension.directionalInsets1

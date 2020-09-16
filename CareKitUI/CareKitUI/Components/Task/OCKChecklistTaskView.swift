@@ -232,7 +232,7 @@ open class OCKChecklistTaskView: OCKView, OCKTaskDisplayable {
         let style = self.style()
         let cardBuilder = OCKCardBuilder(cardView: self, contentView: contentView)
         cardBuilder.enableCardStyling(true, style: style)
-        instructionsLabel.textColor = style.color.secondaryLabel
+        instructionsLabel.textColor = style.color.weekLabelColor
         directionalLayoutMargins = style.dimension.directionalInsets1
         contentStackView.spacing = style.dimension.directionalInsets1.top
         contentStackView.directionalLayoutMargins = .init(top: 0,

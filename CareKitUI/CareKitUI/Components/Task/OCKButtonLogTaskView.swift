@@ -134,7 +134,7 @@ open class OCKButtonLogTaskView: OCKLogTaskView, UICollectionViewDelegate, UICol
     override open func styleDidChange() {
         super.styleDidChange()
         let cachedStyle = style()
-        instructionsLabel.textColor = cachedStyle.color.label
+        instructionsLabel.textColor = cachedStyle.color.weekLabelColor
         contentStackView.setCustomSpacing(cachedStyle.dimension.directionalInsets2.top, after: logButtonsCollectionView)
     }
 

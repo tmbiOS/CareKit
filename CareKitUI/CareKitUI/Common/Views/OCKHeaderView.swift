@@ -212,8 +212,8 @@ open class OCKHeaderView: OCKView {
         titleLabel.textColor = style.color.label
         detailLabel.textColor = style.color.secondaryLabel
 
-        detailDisclosureImage?.tintColor = style.color.customGray3
-        iconImageView?.tintColor = style.color.customGray3
+        detailDisclosureImage?.tintColor = style.color.secondaryLabel
+        iconImageView?.tintColor = style.color.secondaryLabel
 
         iconHeight.update(withContainer: style)
         detailDisclosurePointSize.update(withContainer: style)

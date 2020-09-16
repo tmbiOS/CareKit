@@ -53,7 +53,7 @@ extension UIFont {
     }
 
     static func vitimFont18Bold() -> UIFont {
-        UIFont.systemFont(ofSize: 18.0, weight: .regular)
+        UIFont.systemFont(ofSize: 18.0, weight: .bold)
     }
 
     static func vitimFont12Regular() -> UIFont {

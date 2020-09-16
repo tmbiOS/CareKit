@@ -139,7 +139,7 @@ UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
     private func makePage(date: Date) -> OCKDatedListViewController {
         let listViewController = OCKDatedListViewController(date: date)
-        let dateLabel = OCKDateLabel(textStyle: .body, weight: .regular)
+        let dateLabel = OCKDateLabel(textStyle: .subheadline, weight: .regular)
         dateLabel.setDate(date)
         dateLabel.accessibilityTraits = .header
 
@@ -246,7 +246,7 @@ private class OCKDatedListViewController: OCKListViewController {
 private class OCKDateLabel: OCKLabel {
     private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
+        formatter.dateStyle = .long
         return formatter
     }()
 
