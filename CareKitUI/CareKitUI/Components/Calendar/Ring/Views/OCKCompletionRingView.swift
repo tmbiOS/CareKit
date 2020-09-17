@@ -55,7 +55,7 @@ open class OCKCompletionRingView: OCKView {
     public var lineWidth: CGFloat {
         get { return  ringView.lineWidth }
         set {
-            grooveView.lineWidth = newValue
+            grooveView.lineWidth = newValue / 2
             ringView.lineWidth = newValue
         }
     }

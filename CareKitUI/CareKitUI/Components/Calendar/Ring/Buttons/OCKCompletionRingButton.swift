@@ -37,7 +37,7 @@ open class OCKCompletionRingButton: OCKAnimatedButton<OCKStackView> {
 
     /// Label above the completion ring.
     public let label: OCKLabel = {
-				let label = OCKCappedSizeLabel(textStyle: .caption2, weight: .medium)
+				let label = OCKCappedSizeLabel(textStyle: .caption2, weight: .regular)
         label.maxFontSize = 20
         return label
     }()
@@ -116,10 +116,13 @@ open class OCKCompletionRingButton: OCKAnimatedButton<OCKStackView> {
 
     private func updateRingColors() {
         let cachedStyle = style()
-        let grooveStrokeColor = completionState == .dimmed ? cachedStyle.color.customGray3 : cachedStyle.color.customGray
-        let deselectedLabelColor = completionState == .dimmed ? cachedStyle.color.tertiaryLabel : cachedStyle.color.weekLabelColor
+        let deselectedGrooveColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
+        let deselectedLabelColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.75)
+        let grooveStrokeColor = completionState == .dimmed ? deselectedGrooveColor : UIColor.white
 
-        label.textColor = isSelected ? cachedStyle.color.secondaryLabel : deselectedLabelColor
+        label.font = isSelected ? UIFont.preferredCustomFont(forTextStyle: .caption2, weight: .semibold): UIFont.preferredCustomFont(forTextStyle: .caption2, weight: .regular)
+
+        label.textColor = isSelected ? UIColor.white : deselectedLabelColor
         ring.grooveView.strokeColor = grooveStrokeColor
         ring.strokeColor = cachedStyle.color.tintColor
     }
