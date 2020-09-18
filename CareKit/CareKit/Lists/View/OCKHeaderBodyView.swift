@@ -31,12 +31,6 @@
 import CareKitUI
 import UIKit
 
-extension UIView {
-    var navBarHeight: CGFloat {
-        return 88.0
-    }
-}
-
 internal class OCKHeaderBodyView: OCKView {
 
     enum Constants {
@@ -118,9 +112,7 @@ internal class OCKHeaderBodyView: OCKView {
         insertSubview(backgroundImageView, at: 3)
         
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundImageView.heightAnchor.constraint(
-            equalToConstant: headerHeight + navBarHeight
-        ).isActive = true
+        backgroundImageView.bottomAnchor.constraint(equalTo: separatorView.bottomAnchor).isActive = true
         backgroundImageView.leadingAnchor.constraint(
             equalTo: leadingAnchor, constant: 0
         ).isActive = true
