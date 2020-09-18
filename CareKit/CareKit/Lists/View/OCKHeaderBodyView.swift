@@ -33,7 +33,7 @@ import UIKit
 
 extension UIView {
     var navBarHeight: CGFloat {
-        return ((UIApplication.shared.keyWindow?.rootViewController as? UITabBarController)?.viewControllers?.first as? UINavigationController)?.navigationBar.frame.maxY ?? 0
+        return 88.0
     }
 }
 
