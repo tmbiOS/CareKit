@@ -101,14 +101,14 @@ private struct CardEnabledEnvironmentKey: EnvironmentKey {
     static var defaultValue = true
 }
 
-private extension EnvironmentValues {
+public extension EnvironmentValues {
     var cardEnabled: Bool {
         get { self[CardEnabledEnvironmentKey.self] }
         set { self[CardEnabledEnvironmentKey.self] = newValue }
     }
 }
 
-private extension View {
+public extension View {
     func cardEnabled(_ enabled: Bool) -> some View {
         return self.environment(\.cardEnabled, enabled)
     }

@@ -31,6 +31,7 @@
 import Foundation
 import UIKit
 import CareKit
+import SwiftUI
 
 class CareViewController: OCKDailyTasksPageViewController {
 
@@ -78,7 +79,14 @@ class CareViewController: OCKDailyTasksPageViewController {
                     listViewController.appendView(emptyView, animated: false)
                     return
                 }
-
+              
+                let progressTaskView = NumericProgressTaskView(title: Text("Steps (Static)"),
+                                                progress: Text("0"),
+                                                goal: Text("100"),
+                                                isComplete: true)
+              
+                listViewController.appendViewController(progressTaskView.formattedHostingController(), animated: false)
+            
                 // Add a non-CareKit view into the list
                 let tipTitle = "Benefits of exercising"
                 let tipText = "Learn how activity can promote a healthy pregnancy."
@@ -155,4 +163,12 @@ class CareViewController: OCKDailyTasksPageViewController {
             }
         }
     }
+}
+
+private extension View {
+  func formattedHostingController() -> UIHostingController<Self> {
+    let viewController = UIHostingController(rootView: self)
+    viewController.view.backgroundColor = .clear
+    return viewController
+  }
 }
