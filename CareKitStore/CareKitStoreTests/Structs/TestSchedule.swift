@@ -77,14 +77,14 @@ class TestSchedule: XCTestCase {
 
     func testWeeklyScheduleStartDate() {
         let firstDay = Date()
-        
+
         let weekly = OCKSchedule.weeklyAtTime(
             weekday: 1, hours: 5, minutes: 30,
             start: firstDay, end: nil, targetValues: [], text: nil)
-        
+
         let hours = Calendar.current.component(.hour, from: weekly.startDate())
         let minutes = Calendar.current.component(.minute, from: weekly.startDate())
-        
+
         XCTAssert(hours == 5, "Expected 5, but got \(hours)")
         XCTAssert(minutes == 30, "Expected 30, but got \(minutes)")
     }
@@ -201,6 +201,17 @@ class TestSchedule: XCTestCase {
         let events = schedule.events(from: schedule[1].start, to: schedule[1].end)
         XCTAssert(events.count == 1)
         XCTAssert(events.first?.occurrence == 1)
+    }
+
+    func testAllDayScheduleWithEndDate() throws {
+        let morning = Calendar.current.startOfDay(for: Date())
+        let end = Calendar.current.date(byAdding: .year, value: 1, to: morning)!
+        let interval = DateComponents(weekOfYear: 1)
+        let element = OCKScheduleElement(start: morning, end: end, interval: interval, duration: .allDay)
+        let schedule = OCKSchedule(composing: [element])
+        let nextWeek = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: morning)!
+        let events = schedule.events(from: morning, to: nextWeek)
+        XCTAssert(events.count == 2, "Expected 2, but got \(events.count)")
     }
 
     // Measure how long it takes to generate 10 years worth of events for a highly complex schedule with hourly events.

@@ -51,23 +51,10 @@ class TestScheduleElement: XCTestCase {
     var element: OCKScheduleElement {
         return OCKScheduleElement(start: date, end: nil, interval: interval, text: "Wedding Anniversary", targetValues: [])
     }
-    
-    func testSerialization() throws {
-        XCTAssertNoThrow(try JSONEncoder().encode(element))
-        let data = try JSONEncoder().encode(element)
-        let decoded = try JSONDecoder().decode(OCKScheduleElement.self, from: data)
-        XCTAssert(element == decoded)
-    }
 
     func testSubscript() {
         let event = element[0]
         assert(event.start == element.start)
-    }
-
-    func testOneScheduleElementIsEqualToItsElements() {
-        let interval = DateComponents(day: 1)
-        let schedule = OCKScheduleElement(start: date, end: nil, interval: interval, text: nil, targetValues: [])
-        XCTAssert([schedule] == schedule.elements)
     }
 
     func testOffset() {
@@ -84,6 +71,16 @@ class TestScheduleElement: XCTestCase {
         let justBefore = Calendar.current.date(byAdding: .second, value: -1, to: element.start)!
         let events = element.events(from: wayBefore, to: justBefore)
         XCTAssert(events.isEmpty)
+    }
+
+    func testNoEventsBeforeStartDateForAllDayEvents() {
+        let thisMorning = Calendar.current.startOfDay(for: Date())
+        let tonight = Calendar.current.date(byAdding: DateComponents(day: 1, second: -1), to: thisMorning)!
+        let aWeekAgo = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: thisMorning)!
+        let element = OCKScheduleElement(start: aWeekAgo, end: nil, interval: DateComponents(day: 1),
+                                         text: nil, targetValues: [], duration: .allDay)
+        let events = element.events(from: thisMorning, to: tonight)
+        XCTAssert(events.count == 1)
     }
 
     func testEventOccursExactlyOnStartDate() {
@@ -191,5 +188,13 @@ class TestScheduleElement: XCTestCase {
         let queryEnd = queryStart.addingTimeInterval(1)
         let events = element.events(from: queryStart, to: queryEnd)
         XCTAssert(events.count == 2)
+    }
+
+    func testSerialization() throws {
+        let morning = Calendar.current.startOfDay(for: Date())
+        let element = OCKScheduleElement(start: morning, end: nil, interval: DateComponents(hour: 1), duration: .hours(2))
+        let data = try JSONEncoder().encode(element)
+        let decodedElement = try JSONDecoder().decode(OCKScheduleElement.self, from: data)
+        XCTAssert(element == decodedElement)
     }
 }
