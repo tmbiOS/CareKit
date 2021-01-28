@@ -51,7 +51,7 @@ extension View {
 }
 
 public extension View {
-  public func formattedHostingController() -> UIHostingController<Self> {
+  func formattedHostingController() -> UIHostingController<Self> {
     let viewController = UIHostingController(rootView: self)
     viewController.view.backgroundColor = .clear
     return viewController
