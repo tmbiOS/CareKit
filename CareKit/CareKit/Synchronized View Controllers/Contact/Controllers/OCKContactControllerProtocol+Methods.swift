@@ -47,7 +47,7 @@ public extension OCKContactControllerProtocol {
 
         // Generate the URL to call the phone number
         let filteredNumber = filteredDigits(for: phoneNumber)
-        guard let url = URL(string: "tel://" + filteredNumber) else {
+        guard let url = URL(string: "tel://+" + filteredNumber) else {
             throw OCKContactControllerError.invalidPhoneNumber(phoneNumber)
         }
         return url
