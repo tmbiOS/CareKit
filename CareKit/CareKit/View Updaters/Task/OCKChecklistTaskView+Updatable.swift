@@ -69,5 +69,7 @@ extension OCKChecklistTaskView: OCKTaskUpdatable {
         for _ in 0..<countToRemove {
             removeItem(at: items.count - 1, animated: animated)
         }
+        // Removed first task from a previous day
+        removeItem(at: 0, animated: animated)
     }
 }
