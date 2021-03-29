@@ -164,7 +164,7 @@ UIViewController, OCKTaskViewDelegate {
     // Reset view state on a failure
     // Note: This is needed because the UI assumes user interactions (lke button taps) will be successful, and displays the corresponding
     // state immediately. When the interaction is actually unsuccessful, we need to reset the UI.
-    func resetViewState() {
+    public func resetViewState() {
         controller.taskEvents = controller.taskEvents // triggers an update to the view
     }
 
