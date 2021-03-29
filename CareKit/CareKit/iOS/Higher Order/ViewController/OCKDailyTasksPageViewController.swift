@@ -102,6 +102,12 @@ open class OCKDailyTasksPageViewController: OCKDailyPageViewController, OCKDaily
         }
     }
 
+    public func createEmptyView(for listViewController: OCKListViewController) -> UILabel {
+        listViewController.listView.stackView.spacing = self.emptyLabelMargin
+        let emptyLabel = OCKEmptyLabel(textStyle: .subheadline, weight: .medium)
+        return emptyLabel
+    }
+
     // Fetch events and return a view controller to display the data
     private func viewController(forTask task: OCKAnyTask, fromQuery query: OCKTaskQuery,
                                 result: @escaping (UIViewController?) -> Void) {

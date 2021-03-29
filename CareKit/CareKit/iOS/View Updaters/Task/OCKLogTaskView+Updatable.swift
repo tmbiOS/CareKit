@@ -69,12 +69,17 @@ private extension OCKLogTaskView {
 }
 
 private extension OCKOutcomeValue {
-    var stringValue: String {
-        switch type {
-        case .boolean: return booleanValue! ? loc("COMPLETED") : loc("INCOMPLETE")
-        default: return String(describing: value).capitalized
-        }
-    }
+	var stringValue: String {
+		switch type {
+		case .boolean:
+			return booleanValue! ? loc("COMPLETED") : loc("INCOMPLETE")
+			
+		case .binary:
+			return dataValue?.base64EncodedString() ?? String(describing: value)
+			
+		default: return String(describing: value)
+		}
+	}
 }
 
 extension OCKButtonLogTaskView: OCKEventUpdatable {

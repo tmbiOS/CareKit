@@ -131,17 +131,17 @@ public extension OCKAnyReadOnlyEventStore where Self: OCKAnyReadOnlyTaskStore, S
 
     func fetchInsights(query: OCKInsightQuery, callbackQueue: DispatchQueue = .main,
                        completion: @escaping OCKResultClosure<[Double]>) {
-        let eventQuery = OCKEventQuery(dateInterval: query.dateInterval)
+			let eventQuery = OCKEventQuery(dateInterval: query.dateInterval)
         fetchAnyEvents(taskID: query.taskID, query: eventQuery, callbackQueue: callbackQueue) { result in
             switch result {
             case .failure(let error): completion(.failure(.fetchFailed(reason: "Failed to fetch insights. \(error.localizedDescription)")))
             case .success(let events):
                 let eventsByDay = self.groupEventsByDate(events: events, after: query.dateInterval.start, before: query.dateInterval.end)
                 let valuesByDay = eventsByDay.map(query.aggregator.aggregate)
-                completion(.success(valuesByDay))
+									completion(.success(valuesByDay))
+								}
             }
         }
-    }
 
     private func groupEventsByDate(events: [OCKAnyEvent], after start: Date, before end: Date) -> [[OCKAnyEvent]] {
         var days: [[OCKAnyEvent]] = []
@@ -151,8 +151,10 @@ public extension OCKAnyReadOnlyEventStore where Self: OCKAnyReadOnlyTaskStore, S
             days.append([])
         }
         for event in events {
-            let dayIndex = grabDayIndex(event.scheduleEvent.start)
+          let dayIndex = grabDayIndex(event.scheduleEvent.start)
+          if dayIndex >= 0, dayIndex < days.count {
             days[dayIndex].append(event)
+          }
         }
         return days
     }

@@ -29,7 +29,7 @@
  */
 
 import CoreData
-import Foundation
+import UIKit
 
 /// An `OCKTask` represents some task or action that a patient is supposed to perform. Tasks are optionally associable with an `OCKCarePlan`
 /// and must have a unique id and schedule. The schedule determines when and how often the task should be performed, and the
@@ -102,4 +102,20 @@ extension OCKTask: OCKVersionedObjectCompatible {
     func insert(context: NSManagedObjectContext) -> OCKCDVersionedObject {
         OCKCDTask(task: self, context: context)
     }
+}
+
+public extension OCKTask {
+  var detailAssetImage: UIImage? {
+    guard let imageName =  userInfo?["detailAssetImage"],
+      let image = UIImage(named: imageName) else {
+        return nil
+    }
+    return image
+  }
+
+  mutating func setDetailAssetImageName(_ name: String) {
+    var userInfo = self.userInfo ?? [:]
+    userInfo["detailAssetImage"] = name
+    self.userInfo = userInfo
+  }
 }

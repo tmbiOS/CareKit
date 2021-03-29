@@ -89,13 +89,13 @@ open class OCKStackView: UIStackView, OCKStylable {
         fatalError("init(coder:) has not been implemented")
     }
 
-    static func vertical() -> OCKStackView {
+    public static func vertical() -> OCKStackView {
         let stackView = OCKStackView()
         stackView.axis = .vertical
         return stackView
     }
 
-    static func horizontal() -> OCKStackView {
+    public static func horizontal() -> OCKStackView {
         let stackView = OCKStackView()
         stackView.axis = .horizontal
         return stackView

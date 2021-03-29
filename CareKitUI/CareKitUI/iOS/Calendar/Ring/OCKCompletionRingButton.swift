@@ -38,7 +38,7 @@ open class OCKCompletionRingButton: OCKAnimatedButton<OCKStackView> {
 
     /// Label above the completion ring.
     public let label: OCKLabel = {
-        let label = OCKCappedSizeLabel(textStyle: .caption1, weight: .semibold)
+				let label = OCKCappedSizeLabel(textStyle: .caption2, weight: .medium)
         label.maxFontSize = 20
         return label
     }()

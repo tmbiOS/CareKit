@@ -33,9 +33,9 @@ import CareKitUI
 import UIKit
 
 /// A view enclosing a scrollable stack view.
-internal class OCKListView: OCKView {
+open class OCKListView: OCKView {
 
-    override var backgroundColor: UIColor? {
+    open override var backgroundColor: UIColor? {
         didSet {
             contentView.backgroundColor = backgroundColor
             scrollView.backgroundColor = backgroundColor
@@ -63,7 +63,7 @@ internal class OCKListView: OCKView {
         setup()
     }
 
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
@@ -100,7 +100,7 @@ internal class OCKListView: OCKView {
             contentView.constraints(equalTo: scrollView))
     }
 
-    override func styleDidChange() {
+    override open func styleDidChange() {
         super.styleDidChange()
         let cachedStyle = style()
         contentView.directionalLayoutMargins = cachedStyle.dimension.directionalInsets1
