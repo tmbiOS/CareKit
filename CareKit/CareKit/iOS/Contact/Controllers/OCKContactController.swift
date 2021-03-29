@@ -181,7 +181,7 @@ open class OCKContactController: ObservableObject {
 
     // Remove non-numeric characters
     private func filteredDigits(for value: String) -> String {
-        return value.filter("0123456789".contains)
+        return value.filter("+0123456789".contains)
     }
 
     private func validateContact() throws -> OCKAnyContact {
