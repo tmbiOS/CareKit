@@ -208,7 +208,7 @@ open class OCKTaskController: ObservableObject {
             self.error = error
         }
         .sink { [unowned self] events in
-
+            
             // If no events were found, clear the view model
             if clearsViewModelOnFailure && events.isEmpty {
                 self.taskEvents = .init()
@@ -226,6 +226,11 @@ open class OCKTaskController: ObservableObject {
             // Update the current view model and begin listen to changes for the new events and tasks.
             let modifiedEvents = events
                 .flatMap { $0 }
+                .filter {
+                    Calendar.current.isDate(
+                        $0.scheduleEvent.start,
+                        inSameDayAs: eventQuery.dateInterval.start)
+                }
                 .map { self.modified(event: $0 ) }
             let viewModelUpdates = OCKTaskEvents(events: modifiedEvents)
             modifiedEvents.forEach { currentViewModel.append(event: $0) }

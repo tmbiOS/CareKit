@@ -36,7 +36,7 @@ import Foundation
 extension OCKChecklistTaskView: OCKTaskUpdatable {
     func updateWith(events: [OCKAnyEvent]?, animated: Bool) {
         headerView.updateWith(events: events, animated: animated)
-
+        
         guard let events = events, !events.isEmpty else {
             clearView(animated: animated)
             return
@@ -71,20 +71,6 @@ extension OCKChecklistTaskView: OCKTaskUpdatable {
         for _ in 0..<countToRemove {
             removeItem(at: items.count - 1, animated: animated)
         }
-        for i in 0..<events.count {
-            let event = events[i]
-            if !event.scheduleEvent.start.same(
-                event.scheduleEvent.end) {
-                removeItem(at: i, animated: animated)
-            }
-        }
-    }
-}
-
-private extension Date {
-    func same(_ date: Date?) -> Bool {
-        guard let date = date else { return false }
-        return Calendar.current.isDate(self, inSameDayAs: date)
     }
 }
 #endif
