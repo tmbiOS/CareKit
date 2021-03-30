@@ -31,6 +31,7 @@
 
 import CareKitStore
 import CareKitUI
+import Foundation
 
 extension OCKChecklistTaskView: OCKTaskUpdatable {
     func updateWith(events: [OCKAnyEvent]?, animated: Bool) {
@@ -66,13 +67,24 @@ extension OCKChecklistTaskView: OCKTaskUpdatable {
 
     // Remove any items that aren't needed
     private func trimItems(given events: [OCKAnyEvent], animated: Bool) {
-        guard items.count > events.count else { return }
         let countToRemove = items.count - events.count
         for _ in 0..<countToRemove {
             removeItem(at: items.count - 1, animated: animated)
         }
-        // Removed first task from a previous day
-        removeItem(at: 0, animated: animated)
+        for i in 0..<events.count {
+            let event = events[i]
+            if !event.scheduleEvent.start.same(
+                event.scheduleEvent.end) {
+                removeItem(at: i, animated: animated)
+            }
+        }
+    }
+}
+
+private extension Date {
+    func same(_ date: Date?) -> Bool {
+        guard let date = date else { return false }
+        return Calendar.current.isDate(self, inSameDayAs: date)
     }
 }
 #endif
