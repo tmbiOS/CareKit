@@ -27,7 +27,7 @@
  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+import Foundation
 import CareKitStore
 import CareKitUI
 
@@ -53,23 +53,37 @@ extension OCKChecklistTaskView: OCKTaskUpdatable {
                 item.isSelected = event.outcome != nil
             }
         }
-
+        
         // Remove any extraneous items
         trimItems(given: events, animated: animated)
     }
-
+    
     private func clearView(animated: Bool) {
         instructionsLabel.text = nil
         clearItems(animated: animated)
     }
-
+    
     // Remove any items that aren't needed
     private func trimItems(given events: [OCKAnyEvent], animated: Bool) {
         let countToRemove = items.count - events.count
         for _ in 0..<countToRemove {
             removeItem(at: items.count - 1, animated: animated)
         }
+        #warning("remove here")
+        for i in 0..<events.count {
+            let event = events[i]
+            if !event.scheduleEvent.start.same(event.scheduleEvent.end) {
+                removeItem(at: i, animated: animated)
+            }
+        }
         // Removed first task from a previous day
-        removeItem(at: 0, animated: animated)
+        //removeItem(at: 0, animated: animated)
+    }
+}
+
+extension Date {
+    func same(_ date: Date?) -> Bool {
+        guard let date = date else { return false }
+        return Calendar.current.isDate(self, inSameDayAs: date)
     }
 }
