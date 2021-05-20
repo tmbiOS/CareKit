@@ -89,6 +89,8 @@ open class OCKHeaderView: OCKView {
         let label = OCKLabel(textStyle: .caption1, weight: .medium)
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
+        /// Hide label 20.05.2021 LH New target
+        label.isHidden = true
         label.animatesTextChanges = true
         return label
     }()
@@ -187,6 +189,8 @@ open class OCKHeaderView: OCKView {
     private static func makeDetailDisclosureImage() -> UIImageView {
         let image = UIImage(systemName: "chevron.right")
         let imageView = UIImageView(image: image)
+        /// Hide imageView 20.05.2021 LH New target
+        imageView.isHidden = true
         return imageView
     }
 
