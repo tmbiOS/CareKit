@@ -40,7 +40,7 @@ class OCKCDTask: OCKCDVersionedObject {
     @NSManaged var scheduleElements: Set<OCKCDScheduleElement>
     @NSManaged var outcomes: Set<OCKCDOutcome>
     @NSManaged var healthKitLinkage: OCKCDHealthKitLinkage?
-
+    
     override func validateRelationships() throws {
         if !allowsMissingRelationships && carePlan == nil {
             throw OCKStoreError.invalidValue(reason: "An OCKCDTask's carePlan relationship may not be nil")

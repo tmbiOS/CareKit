@@ -37,8 +37,8 @@ import HealthKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let coreDataStore = OCKStore(name: "SampleAppStore", type: .onDisk)
-    let healthKitStore = OCKHealthKitPassthroughStore(name: "SampleAppHealthKitPassthroughStore", type: .onDisk)
+    let coreDataStore = OCKStore(name: "SampleAppStore", type: .onDisk(protection: .complete))
+    let healthKitStore = OCKHealthKitPassthroughStore(name: "SampleAppHealthKitPassthroughStore", type: .onDisk(protection: .complete))
     private(set) var synchronizedStoreManager: OCKSynchronizedStoreManager!
 
     func application(_ application: UIApplication,

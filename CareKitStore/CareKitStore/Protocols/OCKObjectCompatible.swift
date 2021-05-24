@@ -102,7 +102,11 @@ internal protocol OCKVersionedObjectCompatible: OCKObjectCompatible {
 
 extension OCKObjectCompatible {
     mutating func copyCommonValues(from other: OCKCDObject) {
-        uuid = other.uuid
+        if other.schemaVersion == "2.0.4" {
+            uuid = UUID()
+        } else {
+            uuid = other.uuid
+        }
         createdDate = other.createdDate
         updatedDate = other.updatedDate
         schemaVersion = OCKSemanticVersion(other.schemaVersion)
@@ -119,19 +123,17 @@ extension OCKObjectCompatible {
             return note
         }
     }
-
-    func matches(tags: [String]) -> Bool {
-        if tags.isEmpty { return true }
-        return !Set(self.tags ?? []).isDisjoint(with: tags)
-    }
 }
 
 extension OCKVersionedObjectCompatible {
     mutating func copyVersionedValues(from other: OCKCDVersionedObject) {
-        uuid = other.uuid
+        if other.schemaVersion == "2.0.4" {
+            uuid = UUID()
+        } else {
+            uuid = other.uuid
+        }
         deletedDate = other.deletedDate
         effectiveDate = other.effectiveDate
-        uuid = other.uuid
         nextVersionUUID = other.next?.uuid
         previousVersionUUID = other.previous?.uuid
         copyCommonValues(from: other)
