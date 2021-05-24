@@ -47,16 +47,22 @@ extension OCKStoreCoordinator {
         do {
             try findStore(forTasks: tasks).addAnyTasks(tasks, callbackQueue: callbackQueue, completion: completion)
         } catch {
-            callbackQueue.async { completion?(.failure(.addFailed(reason: "Failed to find store accepting tasks. Error: \(error)"))) }
+            callbackQueue.async {
+                completion?(.failure(.addFailed(
+                    reason: "Failed to find store accepting tasks. Error: \(error.localizedDescription)")))
+            }
         }
     }
 
     open func updateAnyTasks(_ tasks: [OCKAnyTask], callbackQueue: DispatchQueue = .main,
                              completion: ((Result<[OCKAnyTask], OCKStoreError>) -> Void)? = nil) {
         do {
-            try findStore(forTasks: tasks).addAnyTasks(tasks, callbackQueue: callbackQueue, completion: completion)
+            try findStore(forTasks: tasks).updateAnyTasks(tasks, callbackQueue: callbackQueue, completion: completion)
         } catch {
-            callbackQueue.async { completion?(.failure(.updateFailed(reason: "Failed to find store accepting tasks. Error: \(error)"))) }
+            callbackQueue.async {
+                completion?(.failure(.updateFailed(
+                    reason: "Failed to find store accepting tasks. Error: \(error.localizedDescription)")))
+            }
         }
     }
 
@@ -65,7 +71,10 @@ extension OCKStoreCoordinator {
         do {
             try findStore(forTasks: tasks).deleteAnyTasks(tasks, callbackQueue: callbackQueue, completion: completion)
         } catch {
-            callbackQueue.async { completion?(.failure(.deleteFailed(reason: "Failed to find store accepting tasks. Error: \(error)"))) }
+            callbackQueue.async {
+                completion?(.failure(.deleteFailed(
+                    reason: "Failed to find store accepting tasks. Error: \(error.localizedDescription)")))
+            }
         }
     }
 

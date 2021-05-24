@@ -1,21 +1,21 @@
 /*
  Copyright (c) 2019, Apple Inc. All rights reserved.
-
+ 
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-
+ 
  1.  Redistributions of source code must retain the above copyright notice, this
  list of conditions and the following disclaimer.
-
+ 
  2.  Redistributions in binary form must reproduce the above copyright notice,
  this list of conditions and the following disclaimer in the documentation and/or
  other materials provided with the distribution.
-
+ 
  3. Neither the name of the copyright holder(s) nor the names of any contributors
  may be used to endorse or promote products derived from this software without
  specific prior written permission. No license is granted to the trademarks of
  the copyright holders even if such marks are included in this software.
-
+ 
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -29,10 +29,41 @@
  */
 
 import Foundation
-import os.log
+import ModelsDSTU2
+import ModelsR4
 
-extension OSLog {
-    private static var subsystem = Bundle.main.bundleIdentifier!
+extension ModelsDSTU2.DateTime {
+    var foundationDate: Date {
+        var components = DateComponents()
 
-    static let ui = OSLog(subsystem: subsystem, category: "CareKitUI")
+        components.year = date.year
+        components.month = date.month.map { Int($0) }
+        components.day = date.day.map { Int($0) }
+
+        components.hour = time.map { $0.hour }.map { Int($0) }
+        components.minute = time.map { $0.minute }.map { Int($0) }
+        components.second = time.map { $0.second }.map { Int(truncating: $0 as NSNumber) }
+
+        components.timeZone = timeZone
+
+        return Calendar.current.date(from: components)!
+    }
+}
+
+extension ModelsR4.DateTime {
+    var foundationDate: Date {
+        var components = DateComponents()
+
+        components.year = date.year
+        components.month = date.month.map { Int($0) }
+        components.day = date.day.map { Int($0) }
+
+        components.hour = time.map { $0.hour }.map { Int($0) }
+        components.minute = time.map { $0.minute }.map { Int($0) }
+        components.second = time.map { $0.second }.map { Int(truncating: $0 as NSNumber) }
+
+        components.timeZone = timeZone
+
+        return Calendar.current.date(from: components)!
+    }
 }

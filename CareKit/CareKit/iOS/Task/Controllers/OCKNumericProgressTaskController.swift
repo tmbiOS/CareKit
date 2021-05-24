@@ -32,7 +32,6 @@
 import CareKitStore
 import Combine
 import Foundation
-import os.log
 
 open class OCKNumericProgressTaskController: OCKTaskController {
 
@@ -75,16 +74,10 @@ open class OCKNumericProgressTaskController: OCKTaskController {
     }
 }
 
-private extension Double {
-    func test() {
-
-    }
-}
-
 private extension Optional where Wrapped == Double {
     func logIfNil(message: String) -> Self {
         switch self {
-        case .none: os_log("%{public}@", log: .carekit, message)
+        case .none: log(.debug, "Encountered nil value in OCKNumericProgressTaskController")
         case .some: break
         }
         return self
