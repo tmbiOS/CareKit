@@ -17,7 +17,7 @@
         <attribute name="title" attributeType="String"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="userInfo" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="OCKCDContact" inverseName="carePlan" inverseEntity="OCKCDContact"/>
         <relationship name="next" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="OCKCDCarePlan" inverseName="previous" inverseEntity="OCKCDCarePlan"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="OCKCDNote" inverseName="plan" inverseEntity="OCKCDNote"/>
@@ -58,7 +58,7 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="userInfo" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="OCKCDPostalAddress" inverseName="contact" inverseEntity="OCKCDPostalAddress"/>
         <relationship name="carePlan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OCKCDCarePlan" inverseName="contacts" inverseEntity="OCKCDCarePlan"/>
         <relationship name="name" minCount="1" maxCount="1" deletionRule="Deny" destinationEntity="OCKCDPersonName" inverseName="contact" inverseEntity="OCKCDPersonName"/>
@@ -88,7 +88,7 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="userInfo" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OCKCDContact" inverseName="notes" inverseEntity="OCKCDContact"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="OCKCDNote" inverseName="parentNote" inverseEntity="OCKCDNote"/>
         <relationship name="outcome" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OCKCDOutcome" inverseName="notes" inverseEntity="OCKCDOutcome"/>
@@ -117,7 +117,7 @@
         <attribute name="timezoneIdentifier" attributeType="String"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="userInfo" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="OCKCDNote" inverseName="outcome" inverseEntity="OCKCDNote"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OCKCDTask" inverseName="outcomes" inverseEntity="OCKCDTask"/>
         <relationship name="values" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="OCKCDOutcomeValue" inverseName="outcome" inverseEntity="OCKCDOutcomeValue"/>
@@ -174,17 +174,12 @@
         <attribute name="timezoneIdentifier" attributeType="String"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="userInfo" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="carePlans" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="OCKCDCarePlan" inverseName="patient" inverseEntity="OCKCDCarePlan"/>
         <relationship name="name" minCount="1" maxCount="1" deletionRule="Deny" destinationEntity="OCKCDPersonName" inverseName="patient" inverseEntity="OCKCDPersonName"/>
         <relationship name="next" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="OCKCDPatient" inverseName="previous" inverseEntity="OCKCDPatient"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="OCKCDNote" inverseName="patient" inverseEntity="OCKCDNote"/>
         <relationship name="previous" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="OCKCDPatient" inverseName="next" inverseEntity="OCKCDPatient"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="uuid"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <entity name="OCKCDPersonName" representedClassName=".OCKCDPersonName" syncable="YES">
         <attribute name="familyName" optional="YES" attributeType="String"/>
