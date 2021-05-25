@@ -240,6 +240,16 @@ open class OCKStore: OCKStoreProtocol, Equatable {
         descriptor.shouldAddStoreAsynchronously = false
         descriptor.setOption(storeType.securityClass as NSObject, forKey: NSPersistentStoreFileProtectionKey)
         container.persistentStoreDescriptions = [descriptor]
+      
+        if let meta = try? NSPersistentStoreCoordinator.metadataForPersistentStore(
+            ofType: NSSQLiteStoreType, at: storeURL, options: nil)  {
+            let isCompatible = sharedManagedObjectModel.isConfiguration(
+              withName: nil,
+              compatibleWithStoreMetadata: meta)
+            if !isCompatible {
+                try? delete()
+            }
+        }
 
         // This closure runs synchronously because of the settings above
         var loadError: Error?
