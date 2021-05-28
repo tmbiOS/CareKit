@@ -107,7 +107,7 @@ public extension OCKAnyReadOnlyEventStore where Self: OCKAnyReadOnlyTaskStore, S
                         case .failure(let fetchError):
                             error = fetchError
                         case .success(let fetchedEvents):
-                            events.append(contentsOf: fetchedEvents)
+                          events.append(contentsOf: fetchedEvents.unique)
                         }
                         group.leave()
                     })
@@ -164,4 +164,24 @@ public extension OCKAnyReadOnlyEventStore where Self: OCKAnyReadOnlyTaskStore, S
     private func datesWithTasks(query: OCKAdherenceQuery, tasks: [OCKAnyTask]) -> [Bool] {
         query.dates().map { date in tasks.map { $0.schedule.exists(onDay: date) }.contains(true) }
     }
+}
+
+extension Collection where Element: Equatable {
+  var unique: [Element] {
+    var uniqueValues: [Element] = []
+    forEach { item in
+      if !uniqueValues.contains(item) {
+        uniqueValues += [item]
+      }
+    }
+    return uniqueValues
+  }
+}
+
+extension OCKAnyEvent: Equatable {
+  public static func == (lhs: OCKAnyEvent, rhs: OCKAnyEvent) -> Bool {
+    lhs.scheduleEvent.start == rhs.scheduleEvent.start &&
+      lhs.scheduleEvent.end == rhs.scheduleEvent.end &&
+      lhs.scheduleEvent.occurrence == rhs.scheduleEvent.occurrence
+  }
 }
