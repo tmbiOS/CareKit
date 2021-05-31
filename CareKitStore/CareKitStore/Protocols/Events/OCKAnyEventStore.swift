@@ -181,7 +181,7 @@ extension Collection where Element: Equatable {
 extension OCKAnyEvent: Equatable {
   public static func == (lhs: OCKAnyEvent, rhs: OCKAnyEvent) -> Bool {
     lhs.scheduleEvent.start == rhs.scheduleEvent.start &&
-      lhs.scheduleEvent.end == rhs.scheduleEvent.end &&
-      lhs.scheduleEvent.occurrence == rhs.scheduleEvent.occurrence
+      lhs.scheduleEvent.end == rhs.scheduleEvent.end
+//      lhs.scheduleEvent.occurrence == rhs.scheduleEvent.occurrence
   }
 }
