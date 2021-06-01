@@ -107,7 +107,11 @@ public extension OCKAnyReadOnlyEventStore where Self: OCKAnyReadOnlyTaskStore, S
                         case .failure(let fetchError):
                             error = fetchError
                         case .success(let fetchedEvents):
-                          events.append(contentsOf: fetchedEvents.unique)
+                            let filteredEvents = fetchedEvents.unique.filter {
+                                $0.scheduleEvent.start >= query.dateInterval.start &&
+                                    $0.scheduleEvent.end <= query.dateInterval.end
+                            }
+                          events.append(contentsOf: filteredEvents)
                         }
                         group.leave()
                     })
@@ -181,7 +185,7 @@ extension Collection where Element: Equatable {
 extension OCKAnyEvent: Equatable {
   public static func == (lhs: OCKAnyEvent, rhs: OCKAnyEvent) -> Bool {
     lhs.scheduleEvent.start == rhs.scheduleEvent.start &&
-      lhs.scheduleEvent.end == rhs.scheduleEvent.end
-//      lhs.scheduleEvent.occurrence == rhs.scheduleEvent.occurrence
+      lhs.scheduleEvent.end == rhs.scheduleEvent.end &&
+      lhs.scheduleEvent.occurrence == rhs.scheduleEvent.occurrence
   }
 }
