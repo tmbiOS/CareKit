@@ -194,7 +194,7 @@ public struct OCKScheduleElement: Codable, Equatable {
             if duration == .allDay {
                 return event.end > start
             }
-            return event.start + duration.seconds >= start
+            return event.start >= start
         }
     }
 

@@ -98,7 +98,7 @@ public struct OCKSchedule: Codable, Equatable {
             if event.element.duration == .allDay {
                 return event.start >= Calendar.current.startOfDay(for: start)
             }
-            return event.start + event.element.duration.seconds >= start
+            return event.start >= start
         }
     }
 
