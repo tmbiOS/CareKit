@@ -63,4 +63,5 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 "THREE_FINGER_SWIPE_DAY" = "Three-finger swipe to go to next or previous day";
 "THREE_FINGER_SWIPE_WEEK" = "Three-finger swipe to go to next or previous week";
 "TODAY" = "Aujourd'hui";
+"ecgTasks.title" = "ECG";
 "ecgTasks.taskInstruction" = "Vous devez mesurer votre fréquence cardiaque ECG avec votre Apple Watch, enregistrer les mesures dans l’application Health et cliquer sur le bouton Synchroniser à droite de la barre de navigation pour remplir le questionnaire, puis télécharger l’ECG sur le serveur. Regardez la vidéo sur l’onglet « Aide » pour plus d’informations. Pour réaliser cette opération, vous devez effectuer au moins une mesure dans chaque intervalle de temps spécifié. Il est recommandé de prendre autant de mesures ECG que possible afin d’établir votre état de santé le plus précisément possible.";

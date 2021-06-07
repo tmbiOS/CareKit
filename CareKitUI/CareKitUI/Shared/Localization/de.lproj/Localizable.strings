@@ -56,11 +56,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 "NO_DATA" = "No Data";
 "NO_TASKS" = "No Tasks";
 "NO_EVENTS" = "No Events";
-"PROGRESS" = "Fortschritt";
+"PROGRESS" = "ERSTELLTE";
 "SEARCH" = "Search";
 "SELECTED" = "Selected";
 "TASKS" = "Tasks";
 "THREE_FINGER_SWIPE_DAY" = "Three-finger swipe to go to next or previous day";
 "THREE_FINGER_SWIPE_WEEK" = "Three-finger swipe to go to next or previous week";
 "TODAY" = "Heute";
+"ecgTasks.title" = "EKG";
 "ecgTasks.taskInstruction" = "Sie müssen EKG-Messungen auf Ihrer Apple Watch durchführen, diese in der Lanshealth-App speichern und auf die Schaltfläche \"Sync\" auf der rechten Seite der Navigationsleiste klicken, um den Fragebogen auszufüllen und das EKG auf den Server hochzuladen.\n Sehen Sie sich das Video auf der Registerkarte \"Hilfe\" an, um weitere Informationen zu erhalten.\n Um die Aufgabe abzuschließen, müssen Sie mindestens eine Messung in jedem angegebenen Zeitintervall durchführen.\n Es wird empfohlen, so viele EKG-Messungen wie möglich durchzuführen, um den genauesten Gesundheitszustand zu ermitteln";

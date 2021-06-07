@@ -56,12 +56,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 "NO_DATA" = "No Data";
 "NO_TASKS" = "No Tasks";
 "NO_EVENTS" = "No Events";
-"PROGRESS" = "Progress";
+"PROGRESS" = "GENERATED";
 "SEARCH" = "Search";
 "SELECTED" = "Selected";
 "TASKS" = "Tasks";
 "THREE_FINGER_SWIPE_DAY" = "Three-finger swipe to go to next or previous day";
 "THREE_FINGER_SWIPE_WEEK" = "Three-finger swipe to go to next or previous week";
 "TODAY" = "Today";
+"ecgTasks.title" = "ECG";
 "ecgTasks.taskInstruction" = "You need to take ECG measurements on your Apple Watch, save them in the Health app, and click the Sync button on the right side of the navigation bar to fill the questionnaire, upload the ECG to the server.\n  Watch the video on the 'Help' tab for more information.\n To complete the task, you must perform at least one measurement in each specified time interval.\n  It is recommended that you take as many ECG measurements as possible to establish the most accurate state of your health";
 

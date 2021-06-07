@@ -63,4 +63,5 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 "THREE_FINGER_SWIPE_DAY" = "Three-finger swipe to go to next or previous day";
 "THREE_FINGER_SWIPE_WEEK" = "Three-finger swipe to go to next or previous week";
 "TODAY" = "Oggi";
+"ecgTasks.title" = "ECG";
 "ecgTasks.taskInstruction" = "Devi effettuare misurazioni ECG con il tuo Apple Watch, salvarle nell’Health App e cliccare sul tasto ‘Sincronizza’ sul lato destro della barra di navigazione per compilare il questionario e caricare l’ECG sul server.\n Guarda il video sulla scheda 'Aiuto' per maggiori informazioni.\n Per completare il compito, devi eseguire almeno una misurazione in ogni intervallo di tempo specificato.\n Ti consigliamo di effettuare quante più misurazioni ECG possibili per stabilire il tuo stato di salute nel modo più accurato";
