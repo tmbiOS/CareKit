@@ -44,7 +44,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 "DOUBLE_TAP_TO_REMOVE_EVENT" = "Double-tap to removed logged event";
 "EMAIL" = "E-mail";
 "EVENT" = "Event";
-"GOAL" = "Goal";
+"GOAL" = "GOAL";
 "HIGH" = "High";
 "INCOMPLETE" = "Incomplete";
 "LOG" = "Log";
@@ -56,7 +56,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 "NO_DATA" = "No Data";
 "NO_TASKS" = "No Tasks";
 "NO_EVENTS" = "No Events";
-"PROGRESS" = "GENERATED";
+"PROGRESS" = "DONATED";
 "SEARCH" = "Search";
 "SELECTED" = "Selected";
 "TASKS" = "Tasks";
