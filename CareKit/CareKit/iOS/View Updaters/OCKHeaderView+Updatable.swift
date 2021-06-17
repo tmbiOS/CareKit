@@ -51,7 +51,7 @@ extension OCKHeaderView: OCKEventUpdatable, OCKTaskUpdatable, OCKContactUpdatabl
             return
         }
 
-        titleLabel.text = events.first!.task.title
+        titleLabel.text = OCKLocalization.localized(events.first!.task.title ?? "") 
         detailLabel.text = OCKScheduleUtility.scheduleLabel(for: events)
         updateAccessibilityLabel()
     }

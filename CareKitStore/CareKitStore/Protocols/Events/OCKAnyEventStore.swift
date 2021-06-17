@@ -107,7 +107,7 @@ public extension OCKAnyReadOnlyEventStore where Self: OCKAnyReadOnlyTaskStore, S
                         case .failure(let fetchError):
                             error = fetchError
                         case .success(let fetchedEvents):
-                            events.append(contentsOf: fetchedEvents)
+                          events.append(contentsOf: fetchedEvents)
                         }
                         group.leave()
                     })
