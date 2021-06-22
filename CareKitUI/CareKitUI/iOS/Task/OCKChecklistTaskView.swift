@@ -163,7 +163,7 @@ open class OCKChecklistTaskView: OCKView, OCKTaskDisplayable {
     private func makeItem(withTitle title: String) -> OCKChecklistItemButton {
         let button = OCKChecklistItemButton()
         button.addTarget(self, action: #selector(eventButtonTapped(_:)), for: .touchUpInside)
-        button.label.text = title
+        button.label.text = localizedTitle(title) ?? title
         button.accessibilityLabel = title
         return button
     }
@@ -178,7 +178,7 @@ open class OCKChecklistTaskView: OCKView, OCKTaskDisplayable {
     public func updateItem(at index: Int, withTitle title: String) -> OCKChecklistItemButton? {
         guard index < checklistItemsStackView.arrangedSubviews.count else { return nil }
         let button = items[index]
-        button.label.text = title
+        button.label.text = localizedTitle(title) ?? title
         return button
     }
 
@@ -243,5 +243,17 @@ open class OCKChecklistTaskView: OCKView, OCKTaskDisplayable {
                                                           bottom: style.dimension.directionalInsets1.bottom,
                                                           trailing: style.dimension.directionalInsets1.trailing)
     }
+}
+
+extension OCKChecklistTaskView {
+  func localizedTitle(_ title: String) -> String? {
+    let components = title.components(separatedBy: "|")
+    guard components.count == 2 else {
+      return nil
+    }
+    let key = components[0]
+    let params = components[1].components(separatedBy: ",")
+    return String(format: OCKLocalization.localized(key), arguments: params)
+  }
 }
 #endif
