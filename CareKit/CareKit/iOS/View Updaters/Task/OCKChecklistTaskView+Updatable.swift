@@ -42,7 +42,7 @@ extension OCKChecklistTaskView: OCKTaskUpdatable {
             return
         }
 
-        instructionsLabel.text = OCKLocalization.localized(events.first!.task.instructions ?? "") 
+        instructionsLabel.text = nil
 
         // Update the items based on the new events
         for (index, event) in events.enumerated() {

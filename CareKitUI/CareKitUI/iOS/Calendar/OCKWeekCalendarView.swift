@@ -77,6 +77,10 @@ open class OCKWeekCalendarView: OCKView, OCKCalendarDisplayable {
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
+        let identifier = Locale.current.identifier
+        if !identifier.contains("en") && !identifier.contains("de") {
+          formatter.locale = Locale(identifier: "en")
+        }
         formatter.dateFormat = "E, d"
         return formatter
     }()

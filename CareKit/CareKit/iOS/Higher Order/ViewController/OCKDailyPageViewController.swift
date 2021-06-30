@@ -282,6 +282,10 @@ private class OCKDatedListViewController: OCKListViewController {
 private class OCKDateLabel: OCKLabel {
     private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
+        let identifier = Locale.current.identifier
+        if !identifier.contains("en") && !identifier.contains("de") {
+          formatter.locale = Locale(identifier: "en")
+        }
         formatter.dateStyle = .medium
         return formatter
     }()
