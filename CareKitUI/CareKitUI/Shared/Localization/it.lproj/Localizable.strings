@@ -63,3 +63,4 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 "THREE_FINGER_SWIPE_DAY" = "Three-finger swipe to go to next or previous day";
 "THREE_FINGER_SWIPE_WEEK" = "Three-finger swipe to go to next or previous week";
 "TODAY" = "Oggi";
+"ecgTasks.title" = "Time period";
